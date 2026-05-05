@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Mi Ravenna | Pizza artesanal - Peça pelo WhatsApp</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      color: #f5f5f5;
+      line-height: 1.4;
+    }
+
+    /* container responsivo */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== HEADER IMPACTANTE ===== */
+    .header {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+      border-bottom: 3px solid #e63946;
+      padding: 32px 0 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(135deg, #ffffff 20%, #e63946 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .tagline-header {
+      font-size: 1.3rem;
+      color: #f4a261;
+      font-weight: 600;
+      margin-bottom: 28px;
+      letter-spacing: -0.2px;
+    }
+
+    .btn-whatsapp-header {
+      background-color: #25d366;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0a0a0a;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-whatsapp-header:hover {
+      transform: scale(1.02);
+      background-color: #20b859;
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    /* seções */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section-dark {
+      background-color: #0f0f0f;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title span {
+      border-bottom: 4px solid #e63946;
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+
+    /* GRADE DE PIZZAS (cardápio principal) */
+    .pizza-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .pizza-card {
+      background: #141414;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      border: 1px solid #2a2a2a;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .pizza-card:hover {
+      transform: translateY(-6px);
+      border-color: #e63946;
+      box-shadow: 0 18px 28px rgba(230, 57, 70, 0.2);
+    }
+
+    .pizza-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #2c2c2c;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .pizza-card:hover .pizza-img {
+      transform: scale(1.02);
+    }
+
+    .pizza-info {
+      padding: 18px 18px 22px;
+    }
+
+    .pizza-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #e63946;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .pizza-desc {
+      color: #bcbcbc;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* COMO FUNCIONA + INFOS  */
+    .funcionamento-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .func-card {
+      background: #121212;
+      border-radius: 28px;
+      padding: 24px 20px;
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      border: 1px solid #252525;
+    }
+
+    .func-card h3 {
+      font-size: 1.6rem;
+      color: #f4a261;
+      margin-bottom: 12px;
+    }
+
+    .func-card p {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    /* SOBRE / CONFIANÇA (bem curto) */
+    .trust-box {
+      background: #e63946;
+      border-radius: 60px;
+      padding: 20px 28px;
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto;
+      box-shadow: 0 8px 18px rgba(230,57,70,0.3);
+    }
+
+    .trust-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+    .trust-text small {
+      font-size: 1rem;
+      font-weight: normal;
+      opacity: 0.95;
+    }
+
+    /* INFO (pagamento + local + telefone) */
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+
+    .info-card {
+      background: #151515;
+      border-radius: 28px;
+      padding: 24px 22px;
+      flex: 1;
+      min-width: 210px;
+      text-align: center;
+      border: 1px solid #2a2a2a;
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      color: #e63946;
+      margin-bottom: 16px;
+    }
+
+    .payment-list {
+      list-style: none;
+      padding: 0;
+    }
+    .payment-list li {
+      margin: 10px 0;
+      font-weight: 500;
+      color: #f0f0f0;
+    }
+    .local-link, .phone-link {
+      color: #f4a261;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed #f4a261;
+    }
+    .phone-link {
+      font-size: 1.3rem;
+      border-bottom: none;
+      background: #1f1f1f;
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 40px;
+      margin-top: 8px;
+    }
+
+    /* WHATSAPP FLUTUANTE */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: #25d366;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+      transition: 0.2s;
+      z-index: 1000;
+      cursor: pointer;
+      border: none;
+      animation: pulse 1.5s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      background-color: #20b859;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5);}
+      70% { box-shadow: 0 0 0 12px rgba(37,211,102,0);}
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0);}
+    }
+    .whatsapp-float svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+
+    footer {
+      background: #030303;
+      text-align: center;
+      padding: 24px;
+      font-size: 0.75rem;
+      color: #6c6c6c;
+      border-top: 1px solid #1e1e1e;
+    }
+
+    /* responsividade mobile */
+    @media (max-width: 680px) {
+      .container {
+        padding: 0 16px;
+      }
+      .logo h1 {
+        font-size: 2.2rem;
+      }
+      .tagline-header {
+        font-size: 1rem;
+      }
+      .btn-whatsapp-header {
+        padding: 12px 24px;
+        font-size: 1.2rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .trust-text {
+        font-size: 1rem;
+      }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 18px;
+        right: 18px;
+      }
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+      .pizza-name {
+        font-size: 1.3rem;
+      }
+      .func-card h3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    hr {
+      border-color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <h1>MI RAVENNA</h1>
+    </div>
+    <div class="tagline-header">🍕 Pizzas bem recheadas e entrega relâmpago</div>
+    <button class="btn-whatsapp-header" id="headerWhatsBtn">
+      📲 PEDIR NO WHATSAPP
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- SEÇÃO CARDÁPIO PRINCIPAL (6 pizzas reais) -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title"><span>🍕 CARDÁPIO</span></h2>
+      <div class="pizza-grid" id="pizzaGrid">
+        <!-- Pizza 1 -->
+        <div class="pizza-card" data-pizza="Pepperoni Supreme">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Pepperoni+Supreme" alt="Pepperoni Supreme">
+          <div class="pizza-info">
+            <div class="pizza-name">Pepperoni Supreme</div>
+            <div class="pizza-desc">Dupla camada de pepperoni, mussarela e orégano. Intensa e crocante.</div>
+          </div>
+        </div>
+        <!-- Pizza 2 -->
+        <div class="pizza-card" data-pizza="Quattro Formaggi">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Quattro+Formaggi" alt="Quattro Formaggi">
+          <div class="pizza-info">
+            <div class="pizza-name">Quattro Formaggi</div>
+            <div class="pizza-desc">Mussarela, parmesão, gorgonzola e provolone. Cremosa e exclusiva.</div>
+          </div>
+        </div>
+        <!-- Pizza 3 -->
+        <div class="pizza-card" data-pizza="Margherita Tradizionale">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Margherita" alt="Margherita">
+          <div class="pizza-info">
+            <div class="pizza-name">Margherita</div>
+            <div class="pizza-desc">Manjericão fresco, molho pomodoro e mussarela de búfala.</div>
+          </div>
+        </div>
+        <!-- Pizza 4 -->
+        <div class="pizza-card" data-pizza="Frango Cremoso com Catupiry">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Frango+Catupiry" alt="Frango com Catupiry">
+          <div class="pizza-info">
+            <div class="pizza-name">Frango com Catupiry</div>
+            <div class="pizza-desc">Frango desfiado, catupiry original, milho e bacon crocante.</div>
+          </div>
+        </div>
+        <!-- Pizza 5 -->
+        <div class="pizza-card" data-pizza="Calabresa Especial">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Calabresa" alt="Calabresa">
+          <div class="pizza-info">
+            <div class="pizza-name">Calabresa</div>
+            <div class="pizza-desc">Calabresa fatiada, cebola roxa, azeitonas e pimenta calabresa.</div>
+          </div>
+        </div>
+        <!-- Pizza 6 -->
+        <div class="pizza-card" data-pizza="Portuguesa Suprema">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Portuguesa" alt="Portuguesa">
+          <div class="pizza-info">
+            <div class="pizza-name">Portuguesa</div>
+            <div class="pizza-desc">Presunto, ovos, ervilha, cebola e azeitonas. Tradicional e recheada.</div>
+          </div>
+        </div>
+        <!-- Pizza 7 (+1 extra pedida no range) -->
+        <div class="pizza-card" data-pizza="Barbecue Chicken">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=BBQ+Chicken" alt="Frango barbecue">
+          <div class="pizza-info">
+            <div class="pizza-name">Frango Barbecue</div>
+            <div class="pizza-desc">Molho barbecue, frango defumado, cebola crispy e mussarela.</div>
+          </div>
+        </div>
+        <!-- Pizza 8 -->
+        <div class="pizza-card" data-pizza="Vegetariana Deluxe">
+          <img class="pizza-img" src="https://placehold.co/600x400/2a2a2a/e63946?text=Vegetariana" alt="Vegetariana">
+          <div class="pizza-info">
+            <div class="pizza-name">Vegetariana</div>
+            <div class="pizza-desc">Rúcula, tomate seco, berinjela, champignon e cream cheese.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA (simple) -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 class="section-title"><span>⚡ COMO FUNCIONA</span></h2>
+      <div class="funcionamento-grid">
+        <div class="func-card">
+          <h3>🍕 Delivery ou Retirada</h3>
+          <p>Entregamos em até 40 min ou você retira na loja sem taxa.</p>
+        </div>
+        <div class="func-card">
+          <h3>⏰ Horário</h3>
+          <p>Terça a Domingo: 18h às 23h30<br>Segunda: fechado</p>
+        </div>
+        <div class="func-card">
+          <h3>🚚 Tempo médio</h3>
+          <p>Rápido: 30-45 minutos na região central de Arujá.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE / CONFIANÇA (máximo 2 linhas, foco confiança) -->
+  <section class="section">
+    <div class="container">
+      <div class="trust-box">
+        <div class="trust-text">
+          🔥 Mais de 8 anos entregando sabor e qualidade · +2.500 pedidos felizes 🔥
+          <br><small>Massa artesanal e ingredientes selecionados</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFORMAÇÕES: pagamento + localização + telefone -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 class="section-title"><span>📋 INFORMAÇÕES</span></h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>💳 Pagamentos</h3>
+          <ul class="payment-list">
+            <li>✅ Pix (10% off à vista)</li>
+            <li>✅ Cartão crédito/débito</li>
+            <li>✅ Dinheiro / VR</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>📍 Localização</h3>
+          <p>R. Prestes Maia, 86 - Parque Rodrigo Barreto<br>Arujá - SP, 07401-330</p>
+          <a href="#" id="mapsFake" class="local-link">🗺️ Ver rotas no Maps →</a>
+        </div>
+        <div class="info-card">
+          <h3>📞 Telefone</h3>
+          <p><a href="#" id="telLink" class="phone-link">(11) 99999-9999</a></p>
+          <p style="margin-top: 8px; font-size:0.9rem;">• Peça também pelo fixo (11) 4700-1234</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Mi Ravenna · Sabor que aproxima · Peça direto pelo WhatsApp e ganhe agilidade</p>
+</footer>
+
+<!-- BOTÃO WHATSAPP FLUTUANTE FIXO -->
+<button class="whatsapp-float" id="floatWhatsBtn" aria-label="Pedir no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="white">
+    <path d="M12.031 2.004c-5.299 0-9.594 4.295-9.594 9.594 0 1.682.43 3.332 1.253 4.762l-1.314 4.811 4.928-1.289c1.395.789 2.976 1.205 4.633 1.205 5.299 0 9.594-4.295 9.594-9.594s-4.295-9.594-9.594-9.594z M12.031 19.297c-1.314 0-2.607-.342-3.728-.975l-.268-.158-2.954.773.789-2.877-.174-.278c-.678-1.08-1.036-2.331-1.036-3.635 0-4.167 3.392-7.559 7.559-7.559s7.559 3.392 7.559 7.559-3.392 7.559-7.559 7.559z"></path>
+    <path d="M11.792 8.589c-.224-.513-.458-.525-.672-.535-.164-.008-.353-.008-.542-.008-.207 0-.544.078-.83.39-.286.312-1.09 1.064-1.09 2.595 0 1.531 1.115 3.011 1.27 3.219.155.208 2.106 3.438 5.184 4.688 2.518 1.021 3.045.686 3.594.613.549-.073 1.769-.723 2.019-1.42.25-.697.25-1.294.175-1.418-.075-.124-.275-.198-.576-.347-.301-.149-1.777-.877-2.052-.977-.275-.1-.475-.149-.675.149-.2.298-.775.977-.95 1.177-.175.2-.35.224-.65.075-.3-.149-1.266-.467-2.412-1.49-.892-.796-1.494-1.779-1.669-2.08-.175-.3-.019-.462.132-.612.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.226z"></path>
+  </svg>
+</button>
+
+<script>
+  // NÚMERO REAL DO WHATSAPP (altere aqui para o número da pizzaria)
+  const PHONE_NUMBER = "5511999999999";  // Substitua pelo número correto: DDD + número (ex: 5511941234567)
+  const DEFAULT_MSG = "Olá! Vi o cardápio no site e quero pedir uma pizza da Mi Ravenna 🍕. Poderia me ajudar?";
+
+  // Função universal de abrir WhatsApp
+  function openWhatsApp(customMsg = null) {
+    let message = customMsg ? customMsg : DEFAULT_MSG;
+    let url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  }
+
+  // Botão header
+  const headerBtn = document.getElementById('headerWhatsBtn');
+  if(headerBtn) headerBtn.addEventListener('click', () => openWhatsApp());
+
+  // Botão flutuante
+  const floatBtn = document.getElementById('floatWhatsBtn');
+  if(floatBtn) floatBtn.addEventListener('click', () => openWhatsApp());
+
+  // Clique em cada pizza -> já envia mensagem com nome + agiliza pedido
+  const pizzaCards = document.querySelectorAll('.pizza-card');
+  pizzaCards.forEach(card => {
+    const pizzaNameElem = card.querySelector('.pizza-name');
+    let pizzaNome = "delícia especial";
+    if(pizzaNameElem) pizzaNome = pizzaNameElem.innerText;
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const msg = `Quero pedir a pizza *${pizzaNome}* da Mi Ravenna! 😋 Entrega no endereço: R. Prestes Maia, 86 - Arujá. Pode confirmar?`;
+      openWhatsApp(msg);
+    });
+  });
+
+  // Link maps para localização real
+  const mapsLink = document.getElementById('mapsFake');
+  if(mapsLink) {
+    mapsLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const endereco = "R. Prestes Maia, 86 - Parque Rodrigo Barreto, Arujá - SP, 07401-330";
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
+      window.open(mapsUrl, '_blank');
+    });
+  }
+
+  // telefone: clicar já sugere ligação
+  const telLink = document.getElementById('telLink');
+  if(telLink) {
+    telLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = "tel:5511999999999";
+    });
+  }
+
+  // Garantir que todos os botões e interações estejam rápidos, sem enrolação.
+  console.log("Mi Ravenna - pronto pra pedidos");
+</script>
+</body>
+  </html>
